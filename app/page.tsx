@@ -119,7 +119,7 @@ export default function Page() {
         <div className="email-mockup">
           <div className="email-window-top"><span className="email-window-dots"><i /><i /><i /></span><span>Caixa de entrada</span><span className="email-window-icon"><Mail size={15} /></span></div>
           <div className="email-message">
-            <div className="email-sender-row"><div className="email-avatar">VC</div><div className="email-sender"><strong>Vice City Vault</strong><span>para você</span></div><span className="email-time">Agora</span></div>
+            <div className="email-sender-row"><div className="email-avatar"><img src="/gta-6-logo.png" alt="Logotipo Vice City Vault" /></div><div className="email-sender"><strong>Vice City Vault</strong><span>para você</span></div><span className="email-time">Agora</span></div>
             <div className="email-subject">Seu código de resgate chegou!</div>
             <div className="email-body">
               <p>Olá!</p>
