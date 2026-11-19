@@ -25,7 +25,7 @@ export default function Page() {
   return (
     <main>
       <header className="site-header">
-        <a className="wordmark" href="#inicio" aria-label="Vice City Games — início"><img src="/gta-6-logo.svg" alt="Grand Theft Auto VI" /></a>
+        <a className="wordmark" href="#inicio" aria-label="Vice City Games — início"><img src="/gta-6-logo.png" alt="Grand Theft Auto VI" /></a>
         <nav className="desktop-nav" aria-label="Navegação principal">
           <a href="#sobre">O jogo</a>
           <a href="#galeria">Galeria</a>
@@ -114,7 +114,7 @@ export default function Page() {
         <details><summary>O pagamento já está disponível? <ChevronDown size={17} /></summary><p>O pagamento é feito via Pix. Após pagar, aguarde a conferência manual do vendedor para receber seu código digital.</p></details>
       </section>
 
-      <footer className="site-footer"><a className="wordmark" href="#inicio" aria-label="Vice City Games — início"><img src="/gta-6-logo.svg" alt="Grand Theft Auto VI" /></a><p>Uma loja independente. Grand Theft Auto e GTA são marcas de seus respectivos proprietários. Esta página não é afiliada nem endossada pela Rockstar Games.</p><span>© 2026 VICE CITY GAMES</span></footer>
+      <footer className="site-footer"><a className="wordmark" href="#inicio" aria-label="Vice City Games — início"><img src="/gta-6-logo.png" alt="Grand Theft Auto VI" /></a><p>Uma loja independente. Grand Theft Auto e GTA são marcas de seus respectivos proprietários. Esta página não é afiliada nem endossada pela Rockstar Games.</p><span>© 2026 VICE CITY GAMES</span></footer>
 
       <CheckoutModal />
     </main>
