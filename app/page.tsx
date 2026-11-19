@@ -23,7 +23,7 @@ const gallery = [
 
 export default function Page() {
   return (
-    <main>
+    <main onContextMenu={(event) => event.preventDefault()} onDragStart={(event) => event.preventDefault()}>
       <header className="site-header">
         <a className="wordmark" href="#inicio" aria-label="Vice City Games — início"><img src="/gta-6-logo.png" alt="Grand Theft Auto VI" /></a>
         <nav className="desktop-nav" aria-label="Navegação principal">
