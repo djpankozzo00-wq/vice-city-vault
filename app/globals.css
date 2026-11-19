@@ -96,8 +96,10 @@
   display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ffffff25;
   color: #fff;
 }
-.wordmark { font-size: 25px; font-weight: 900; letter-spacing: -2px; line-height: 1; }
-.wordmark span { color: #f45caa; }
+.wordmark { display: inline-flex; align-items: center; line-height: 1; }
+.wordmark img { display: block; width: 112px; height: 48px; object-fit: contain; }
+.site-footer .wordmark img { width: 100px; height: 44px; }
+@media (max-width: 640px) { .wordmark img { width: 94px; height: 42px; } .site-footer .wordmark img { width: 88px; height: 40px; } }
 .desktop-nav { display: flex; gap: 38px; margin-left: 70px; }
 .desktop-nav a { color: #ffffffc7; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; transition: color .2s; }
 .desktop-nav a:hover { color: #fff; }
