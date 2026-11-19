@@ -11,6 +11,7 @@ export default function CheckoutModal() {
   const [error, setError] = useState('')
   const [pix, setPix] = useState<PixResult | null>(null)
   const [copied, setCopied] = useState(false)
+  const [secondsLeft, setSecondsLeft] = useState(30)
 
   useEffect(() => {
     const show = () => {
@@ -18,10 +19,19 @@ export default function CheckoutModal() {
       setError('')
       setPix(null)
       setCopied(false)
+      setSecondsLeft(30)
     }
     window.addEventListener('open-checkout', show)
     return () => window.removeEventListener('open-checkout', show)
   }, [])
+
+  useEffect(() => {
+    if (!pix || secondsLeft <= 0) return
+    const timer = window.setInterval(() => {
+      setSecondsLeft((current) => Math.max(0, current - 1))
+    }, 1000)
+    return () => window.clearInterval(timer)
+  }, [pix, secondsLeft > 0])
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -44,6 +54,7 @@ export default function CheckoutModal() {
       const data = await response.json()
       if (!response.ok) throw new Error(data.error || 'Não foi possível gerar o Pix. Tente novamente.')
       setPix({ pixCode: data.pixCode, identifier: data.identifier })
+      setSecondsLeft(30)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Ocorreu um erro ao gerar o Pix.')
     } finally {
@@ -52,7 +63,7 @@ export default function CheckoutModal() {
   }
 
   async function copyPix() {
-    if (!pix) return
+    if (!pix || secondsLeft <= 0) return
     try {
       await navigator.clipboard.writeText(pix.pixCode)
       setCopied(true)
@@ -88,13 +99,19 @@ export default function CheckoutModal() {
         ) : (
           <>
             <h2 id="checkout-title">Pix <em>gerado.</em></h2>
-            <p>Abra o aplicativo do seu banco e escaneie o QR Code ou copie o código abaixo. Após pagar, aguarde a conferência manual do vendedor.</p>
-            <div className="pix-qr">
-              <img src={'https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=' + encodeURIComponent(pix.pixCode)} alt="QR Code para pagamento Pix" />
-            </div>
-            <label className="pix-code-label">PIX COPIA E COLA<textarea readOnly value={pix.pixCode} rows={4} /></label>
-            <button className="button button-buy" type="button" onClick={copyPix}>{copied ? <>Copiado <Check size={16} /></> : <>Copiar código Pix <Copy size={16} /></>}</button>
-            <p className="manual-confirmation">O pagamento não libera o produto automaticamente. O código digital será enviado pelo vendedor após a confirmação no painel SyncPay.</p>
+            {secondsLeft > 0 ? (
+              <>
+                <p>Escaneie o QR Code ou copie o código Pix antes que o tempo termine.</p>
+                <div className="pix-countdown" role="timer" aria-live="off">Expira em <strong>00:{String(secondsLeft).padStart(2, '0')}</strong></div>
+                <div className="pix-qr">
+                  <img src={'https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=' + encodeURIComponent(pix.pixCode)} alt="QR Code para pagamento Pix" />
+                </div>
+                <label className="pix-code-label">PIX COPIA E COLA<textarea readOnly value={pix.pixCode} rows={4} /></label>
+                <button className="button button-buy" type="button" onClick={copyPix}>{copied ? <>Copiado <Check size={16} /></> : <>Copiar código Pix <Copy size={16} /></>}</button>
+              </>
+            ) : (
+              <p className="pix-expired" role="status">Tempo esgotado. Esta cobrança expirou nesta tela.</p>
+            )}
             <span className="modal-footnote">Identificador do pedido: {pix.identifier}</span>
           </>
         )}
