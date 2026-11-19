@@ -1,7 +1,7 @@
 'use client'
 
 import CheckoutModal from './components/checkout-modal'
-import { ArrowDown, ArrowRight, Check, ChevronDown, Gamepad2, LockKeyhole, ShieldCheck, X } from 'lucide-react'
+import { ArrowDown, ArrowRight, Check, ChevronDown, Gamepad2, LockKeyhole, ShieldCheck } from 'lucide-react'
 
 const gallery = [
   {
