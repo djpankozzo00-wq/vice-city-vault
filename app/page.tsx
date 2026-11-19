@@ -31,18 +31,18 @@ export default function Page() {
           <a href="#galeria">Galeria</a>
           <a href="#edicao">Edição digital</a>
         </nav>
-        <a className="header-cta" href="#edicao">Pré-venda <ArrowRight size={15} /></a>
+        <a className="header-cta" href="#edicao">Comprar <ArrowRight size={15} /></a>
       </header>
 
       <section className="hero" id="inicio">
         <div className="hero-image" role="img" aria-label="Jason e Lucia em um carro, com a paisagem ensolarada de Vice City ao fundo" />
         <div className="hero-overlay" />
         <div className="hero-content">
-          <div className="eyebrow"><span className="eyebrow-line" /> A próxima grande aventura começa aqui</div>
+          <div className="eyebrow"><span className="eyebrow-line" /> O jogo já está disponível</div>
           <p className="hero-kicker">Bem-vindo ao estado de</p>
           <h1>VICE<br /><span>CITY</span></h1>
           <p className="hero-copy">Uma cidade. Duas histórias. Um mundo sem limites.</p>
-          <a className="button button-primary" href="#edicao">Garanta sua cópia <ArrowRight size={17} /></a>
+          <a className="button button-primary" href="#edicao">Compre sua cópia <ArrowRight size={17} /></a>
           <a className="scroll-cue" href="#sobre"><ArrowDown size={15} /> Explore o jogo</a>
         </div>
         <div className="hero-index"><span>01</span><i /> 04</div>
@@ -56,7 +56,7 @@ export default function Page() {
           <div className="intro-copy">
             <p>Vice City é mais do que um lugar — é um estado de espírito. Entre praias douradas, noites elétricas e oportunidades perigosas, cada escolha pode mudar tudo.</p>
             <p>Conheça Lucia e Jason: dois parceiros tentando sobreviver em um mundo que nunca joga limpo.</p>
-            <div className="release-note"><span className="pulse-dot" /> Grand Theft Auto VI <span className="note-divider">/</span> Uma nova era está chegando</div>
+            <div className="release-note"><span className="pulse-dot" /> Grand Theft Auto VI <span className="note-divider">/</span> Já disponível para jogar</div>
           </div>
         </div>
       </section>
@@ -88,13 +88,13 @@ export default function Page() {
           <div className="edition-details">
             <span className="edition-overline">GRAND THEFT AUTO VI</span>
             <h2>Seu lugar<br />é em Vice City.</h2>
-            <p className="edition-description">Prepare-se para descobrir uma história inesquecível em um mundo aberto extraordinário.</p>
+            <p className="edition-description">Grand Theft Auto VI já está disponível. Escolha sua plataforma e receba o código digital de resgate por e-mail após a confirmação do pagamento.</p>
             <ul className="edition-includes">
-              <li><Check size={16} /> Jogo digital completo</li>
-              <li><Check size={16} /> Código de resgate enviado após confirmação</li>
+              <li><Check size={16} /> Versão digital completa</li>
+              <li><Check size={16} /> Código enviado por e-mail após confirmação do Pix</li>
               <li><Check size={16} /> Pagamento seguro no checkout</li>
             </ul>
-            <div className="price-row"><div><span className="price-label">PREÇO ESPECIAL</span><p className="price">R$ 419<span>,90</span></p></div><span className="platform-tag"><Gamepad2 size={14} /> PLATAFORMA A CONFIRMAR</span></div>
+            <div className="price-row"><div><span className="price-label">PREÇO ESPECIAL</span><p className="price">R$ 419<span>,90</span></p></div><span className="platform-tag"><Gamepad2 size={14} /> PS5 • XBOX SERIES X|S</span></div>
             <button className="button button-buy" onClick={() => window.dispatchEvent(new Event("open-checkout"))}>Comprar agora <ArrowRight size={17} /></button>
             <div className="secure-note"><LockKeyhole size={13} /> Checkout processado com segurança</div>
           </div>
@@ -109,8 +109,8 @@ export default function Page() {
       <section className="faq section-wrap">
         <div className="section-label"><span>04 / ANTES DE COMPRAR</span><span className="label-line" /></div>
         <h2>Informações<br /><em>importantes.</em></h2>
-        <details><summary>Como recebo meu código? <ChevronDown size={17} /></summary><p>O código digital será enviado após a confirmação do pagamento. Os detalhes de entrega serão informados antes da finalização da compra.</p></details>
-        <details><summary>Para qual plataforma é o jogo? <ChevronDown size={17} /></summary><p>A plataforma e a região de resgate precisam ser confirmadas pelo vendedor antes da compra. Confira essas informações no checkout.</p></details>
+        <details><summary>Como recebo meu código? <ChevronDown size={17} /></summary><p>Após a confirmação do pagamento via Pix, o código digital de resgate será enviado para o endereço de e-mail informado no checkout. Confira se o e-mail foi digitado corretamente e verifique também a caixa de spam.</p></details>
+        <details><summary>Para qual plataforma é o jogo? <ChevronDown size={17} /></summary><p>O jogo está disponível para PlayStation 5 e Xbox Series X|S. Antes de pagar, confirme com o vendedor qual plataforma corresponde ao código que você está comprando e se a região é compatível com sua conta.</p></details>
         
       </section>
 
