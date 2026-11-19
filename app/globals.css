@@ -157,3 +157,26 @@
 }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
+
+
+/* SyncPay Pix checkout */
+.checkout-modal-wide { max-height: min(92svh, 850px); overflow-y: auto; }
+.checkout-form { display: flex; flex-direction: column; gap: 13px; margin-top: 22px; }
+.checkout-form label, .pix-code-label { display: flex; flex-direction: column; gap: 7px; color: #d9d2dd; font-size: 10px; letter-spacing: .04em; }
+.checkout-form input, .pix-code-label textarea { width: 100%; min-height: 43px; padding: 11px 12px; border: 1px solid #403744; border-radius: 2px; outline: none; background: #0e0c13; color: #fff; font: inherit; font-size: 12px; letter-spacing: normal; }
+.checkout-form input:focus, .pix-code-label textarea:focus { border-color: #f45caa; }
+.checkout-form input::placeholder { color: #716a78; }
+.checkout-form .modal-total { margin: 8px 0 0; }
+.checkout-form .button:disabled { opacity: .65; cursor: wait; transform: none; }
+.checkout-error { margin: 0; color: #ff9b9b !important; font-size: 11px !important; }
+.spin { animation: checkout-spin 1s linear infinite; }
+@keyframes checkout-spin { to { transform: rotate(360deg); } }
+.pix-qr { display: grid; place-items: center; margin: 22px auto; padding: 12px; width: fit-content; background: #fff; border-radius: 4px; }
+.pix-qr img { display: block; width: 210px; height: 210px; }
+.pix-code-label textarea { resize: vertical; min-height: 94px; overflow-wrap: anywhere; }
+.manual-confirmation { margin: 17px 0 0 !important; padding: 12px; border-left: 2px solid #75d8e8; background: #0e0c13; color: #d0c8d4 !important; font-size: 10px !important; }
+.checkout-modal .button { gap: 12px; }
+@media (max-width: 700px) {
+  .checkout-modal-wide { padding: 34px 22px 26px; }
+  .pix-qr img { width: 190px; height: 190px; }
+}
