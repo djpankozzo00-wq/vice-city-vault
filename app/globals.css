@@ -96,8 +96,8 @@
   display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ffffff25;
   color: #fff;
 }
-.wordmark { font-size: 25px; font-weight: 900; letter-spacing: -2px; line-height: 1; }
-.wordmark span { color: #f45caa; }
+.wordmark { display: flex; flex: 0 0 auto; align-items: center; justify-content: center; width: 52px; height: 46px; }
+.wordmark img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .desktop-nav { display: flex; gap: 38px; margin-left: 70px; }
 .desktop-nav a { color: #ffffffc7; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; transition: color .2s; }
 .desktop-nav a:hover { color: #fff; }

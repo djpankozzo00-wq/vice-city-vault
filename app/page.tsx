@@ -27,7 +27,7 @@ export default function Page() {
   return (
     <main>
       <header className="site-header">
-        <a className="wordmark" href="#inicio" aria-label="Vice City Games — início">VC<span>.</span></a>
+        <a className="wordmark" href="#inicio" aria-label="Vice City Games — início"><img src="/gta-6-logo.png" alt="Grand Theft Auto VI" /></a>
         <nav className="desktop-nav" aria-label="Navegação principal">
           <a href="#sobre">O jogo</a>
           <a href="#galeria">Galeria</a>
@@ -94,11 +94,11 @@ export default function Page() {
             <ul className="edition-includes">
               <li><Check size={16} /> Jogo digital completo</li>
               <li><Check size={16} /> Código de resgate enviado após confirmação</li>
-              <li><Check size={16} /> Pagamento seguro via SyncPay</li>
+              <li><Check size={16} /> Pagamento seguro no checkout</li>
             </ul>
             <div className="price-row"><div><span className="price-label">PREÇO ESPECIAL</span><p className="price">R$ 419<span>,90</span></p></div><span className="platform-tag"><Gamepad2 size={14} /> PLATAFORMA A CONFIRMAR</span></div>
             <button className="button button-buy" onClick={() => setCheckoutOpen(true)}>Comprar agora <ArrowRight size={17} /></button>
-            <div className="secure-note"><LockKeyhole size={13} /> Checkout processado com segurança <span>·</span> SyncPay</div>
+            <div className="secure-note"><LockKeyhole size={13} /> Checkout seguro após configuração</div>
           </div>
         </div>
         <div className="trust-row">
@@ -113,17 +113,17 @@ export default function Page() {
         <h2>Informações<br /><em>importantes.</em></h2>
         <details><summary>Como recebo meu código? <ChevronDown size={17} /></summary><p>O código digital será enviado após a confirmação do pagamento. Os detalhes de entrega serão informados antes da finalização da compra.</p></details>
         <details><summary>Para qual plataforma é o jogo? <ChevronDown size={17} /></summary><p>A plataforma e a região de resgate precisam ser confirmadas pelo vendedor antes da compra. Confira essas informações no checkout.</p></details>
-        <details><summary>O pagamento já está disponível? <ChevronDown size={17} /></summary><p>A integração com a SyncPay ainda precisa ser configurada pelo responsável pela loja. Nenhum pagamento será iniciado nesta demonstração.</p></details>
+        <details><summary>O pagamento já está disponível? <ChevronDown size={17} /></summary><p>O sistema de pagamento ainda precisa ser configurado pelo responsável pela loja. Nenhum pagamento será iniciado nesta demonstração.</p></details>
       </section>
 
-      <footer className="site-footer"><a className="wordmark" href="#inicio">VC<span>.</span></a><p>Uma loja independente. Grand Theft Auto e GTA são marcas de seus respectivos proprietários. Esta página não é afiliada nem endossada pela Rockstar Games.</p><span>© 2026 VICE CITY GAMES</span></footer>
+      <footer className="site-footer"><a className="wordmark" href="#inicio" aria-label="Vice City Games — início"><img src="/gta-6-logo.png" alt="Grand Theft Auto VI" /></a><p>Uma loja independente. Grand Theft Auto e GTA são marcas de seus respectivos proprietários. Esta página não é afiliada nem endossada pela Rockstar Games.</p><span>© 2026 VICE CITY GAMES</span></footer>
 
       {checkoutOpen && <div className="modal-backdrop" role="presentation" onClick={() => setCheckoutOpen(false)}>
         <section className="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title" onClick={(event) => event.stopPropagation()}>
           <button className="modal-close" onClick={() => setCheckoutOpen(false)} aria-label="Fechar"><X size={18} /></button>
           <span className="edition-overline">PRÓXIMO PASSO</span>
           <h2 id="checkout-title">Checkout em<br /><em>configuração.</em></h2>
-          <p>A SyncPay ainda não está conectada. O botão de pagamento será ativado quando as credenciais e a confirmação automática do pedido forem configuradas.</p>
+          <p>O sistema de pagamento ainda não está conectado. O botão será ativado quando o checkout e a confirmação automática do pedido forem configurados.</p>
           <div className="modal-total"><span>Grand Theft Auto VI · Digital</span><strong>R$ 419,90</strong></div>
           <button className="button button-buy" onClick={() => setCheckoutOpen(false)}>Entendi <Check size={16} /></button>
           <span className="modal-footnote"><LockKeyhole size={13} /> Você não será cobrado nesta etapa.</span>
