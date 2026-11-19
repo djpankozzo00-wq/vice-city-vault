@@ -78,7 +78,7 @@ export default function CheckoutModal() {
     <div className="modal-backdrop" role="presentation" onClick={() => setOpen(false)}>
       <section className="checkout-modal checkout-modal-wide" role="dialog" aria-modal="true" aria-labelledby="checkout-title" onClick={(event) => event.stopPropagation()}>
         <button className="modal-close" onClick={() => setOpen(false)} aria-label="Fechar"><X size={18} /></button>
-        <span className="edition-overline">PAGAMENTO VIA PIX · SYNCPAY</span>
+        <span className="edition-overline">PAGAMENTO SEGURO VIA PIX</span>
         {!pix ? (
           <>
             <h2 id="checkout-title">Finalize sua<br /><em>compra.</em></h2>
