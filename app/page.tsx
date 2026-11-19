@@ -1,7 +1,7 @@
 'use client'
 
 import CheckoutModal from './components/checkout-modal'
-import { ArrowDown, ArrowRight, Check, ChevronDown, Gamepad2, LockKeyhole, ShieldCheck } from 'lucide-react'
+import { ArrowDown, ArrowRight, Check, ChevronDown, Gamepad2, LockKeyhole, ShieldCheck, Mail, CheckCircle2 } from 'lucide-react'
 
 const gallery = [
   {
@@ -106,8 +106,36 @@ export default function Page() {
         </div>
       </section>
 
+
+      <section className="email-preview-section section-wrap" id="entrega">
+        <div className="section-label"><span>04 / COMO VOCÊ VAI RECEBER</span><span className="label-line" /></div>
+        <div className="email-preview-heading">
+          <div>
+            <h2>Seu código<br /><em>chega por e-mail.</em></h2>
+            <p>Depois que o pagamento for confirmado, enviaremos o código de resgate para o e-mail informado na compra. Veja um exemplo de como a mensagem será apresentada:</p>
+          </div>
+          <span className="email-preview-badge"><Mail size={15} /> EXEMPLO DE E-MAIL</span>
+        </div>
+        <div className="email-mockup">
+          <div className="email-window-top"><span className="email-window-dots"><i /><i /><i /></span><span>Caixa de entrada</span><span className="email-window-icon"><Mail size={15} /></span></div>
+          <div className="email-message">
+            <div className="email-sender-row"><div className="email-avatar">VC</div><div className="email-sender"><strong>Vice City Vault</strong><span>para você</span></div><span className="email-time">Agora</span></div>
+            <div className="email-subject">Seu código de resgate chegou!</div>
+            <div className="email-body">
+              <p>Olá!</p>
+              <p>Seu pagamento foi confirmado. Agradecemos pela sua compra! Aqui está o seu código de resgate do <strong>Grand Theft Auto VI</strong>:</p>
+              <div className="redeem-code"><span>CÓDIGO DE RESGATE</span><strong>XXXX-XXXX-XXXX-XXXX</strong></div>
+              <p>Use este código na plataforma correspondente para resgatar seu jogo. Confira se a plataforma e a região são compatíveis com sua conta.</p>
+              <div className="email-success"><CheckCircle2 size={16} /> Pagamento confirmado</div>
+              <p className="email-signature">Atenciosamente,<br /><strong>Equipe Vice City Vault</strong></p>
+            </div>
+          </div>
+        </div>
+        <p className="email-preview-disclaimer">Esta imagem é apenas uma demonstração. O código real será enviado somente após a confirmação do pagamento.</p>
+      </section>
+
       <section className="faq section-wrap">
-        <div className="section-label"><span>04 / ANTES DE COMPRAR</span><span className="label-line" /></div>
+        <div className="section-label"><span>05 / ANTES DE COMPRAR</span><span className="label-line" /></div>
         <h2>Informações<br /><em>importantes.</em></h2>
         <details><summary>Como recebo meu código? <ChevronDown size={17} /></summary><p>Após a confirmação do pagamento via Pix, o código digital de resgate será enviado para o endereço de e-mail informado no checkout. Confira se o e-mail foi digitado corretamente e verifique também a caixa de spam.</p></details>
         <details><summary>Para qual plataforma é o jogo? <ChevronDown size={17} /></summary><p>O jogo está disponível para PlayStation 5 e Xbox Series X|S. Antes de pagar, confirme com o vendedor qual plataforma corresponde ao código que você está comprando e se a região é compatível com sua conta.</p></details>
