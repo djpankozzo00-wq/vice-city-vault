@@ -78,30 +78,30 @@ export default function CheckoutModal() {
     <div className="modal-backdrop" role="presentation" onClick={() => setOpen(false)}>
       <section className="checkout-modal checkout-modal-wide" role="dialog" aria-modal="true" aria-labelledby="checkout-title" onClick={(event) => event.stopPropagation()}>
         <button className="modal-close" onClick={() => setOpen(false)} aria-label="Fechar"><X size={18} /></button>
-        <span className="edition-overline">PAGAMENTO SEGURO VIA PIX</span>
+        <span className="edition-overline">COMPRA DIGITAL · PAGAMENTO VIA PIX</span>
         {!pix ? (
           <>
             <h2 id="checkout-title">Finalize sua<br /><em>compra.</em></h2>
-            <p>Informe seus dados para gerar a cobrança Pix. O valor é de R$ 419,90.</p>
+            <p>Informe seus dados para gerar a cobrança Pix. Após a confirmação do pagamento, o código de resgate será enviado para o e-mail informado. Valor: R$ 419,90.</p>
             <form className="checkout-form" onSubmit={submit}>
               <label>Nome completo<input name="name" autoComplete="name" required minLength={3} placeholder="Seu nome completo" /></label>
               <label>CPF<input name="cpf" inputMode="numeric" autoComplete="off" required minLength={11} maxLength={14} placeholder="000.000.000-00" /></label>
               <label>E-mail<input name="email" type="email" autoComplete="email" required placeholder="voce@email.com" /></label>
               <label>Telefone<input name="phone" type="tel" inputMode="tel" autoComplete="tel" required minLength={10} maxLength={15} placeholder="(00) 00000-0000" /></label>
-              <div className="modal-total"><span>Grand Theft Auto VI · Digital</span><strong>R$ 419,90</strong></div>
+              <div className="modal-total"><span>Grand Theft Auto VI · Código digital</span><strong>R$ 419,90</strong></div>
               {error && <p className="checkout-error" role="alert">{error}</p>}
               <button className="button button-buy" type="submit" disabled={loading}>
                 {loading ? <>Gerando Pix <LoaderCircle className="spin" size={16} /></> : <>Gerar Pix <LockKeyhole size={16} /></>}
               </button>
             </form>
-            <span className="modal-footnote"><LockKeyhole size={13} /> Seus dados são enviados somente ao servidor para criar a cobrança.</span>
+            <span className="modal-footnote"><LockKeyhole size={13} /> Confira seu e-mail: é nele que você receberá o código de resgate após a confirmação do pagamento.</span>
           </>
         ) : (
           <>
             <h2 id="checkout-title">Pix <em>gerado.</em></h2>
             {secondsLeft > 0 ? (
               <>
-                <p>Escaneie o QR Code ou copie o código Pix antes que o tempo termine.</p>
+                <p>Escaneie o QR Code ou copie o código Pix. Após a confirmação do pagamento, o código do jogo será enviado para o e-mail informado no pedido.</p>
                 <div className="pix-countdown" role="timer" aria-live="off">Expira em <strong>00:{String(secondsLeft).padStart(2, '0')}</strong></div>
                 <div className="pix-qr">
                   <img src={'https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=' + encodeURIComponent(pix.pixCode)} alt="QR Code para pagamento Pix" />
