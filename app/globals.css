@@ -245,3 +245,59 @@
 
 /* Proteção básica contra salvamento acidental das imagens */
 img { -webkit-user-drag: none; -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; }
+
+
+/* Animações premium — Vice City Vault */
+@keyframes vc-fade-up {
+  from { opacity: 0; transform: translate3d(0, 24px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes vc-soft-zoom {
+  from { opacity: .65; transform: scale(1.045); }
+  to { opacity: 1; transform: scale(1.015); }
+}
+@keyframes vc-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 #f45caa00; }
+  50% { box-shadow: 0 0 24px 1px #f45caa35; }
+}
+@keyframes vc-shine {
+  0% { transform: translateX(-150%) skewX(-18deg); }
+  100% { transform: translateX(250%) skewX(-18deg); }
+}
+.hero-image { animation: vc-soft-zoom 1.6s cubic-bezier(.2,.7,.2,1) both; }
+.hero-content > * { animation: vc-fade-up .8s cubic-bezier(.2,.7,.2,1) both; }
+.hero-content > *:nth-child(1) { animation-delay: .12s; }
+.hero-content > *:nth-child(2) { animation-delay: .2s; }
+.hero-content > *:nth-child(3) { animation-delay: .28s; }
+.hero-content > *:nth-child(4) { animation-delay: .36s; }
+.hero-content > *:nth-child(5) { animation-delay: .46s; }
+.hero-content > *:nth-child(6) { animation-delay: .56s; }
+.section-label, .intro-grid, .gallery-heading, .gallery-grid, .edition-card, .trust-row, .email-preview-heading, .email-mockup, .faq h2, .faq details {
+  animation: vc-fade-up .75s cubic-bezier(.2,.7,.2,1) both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 28%;
+}
+.gallery-card { border-radius: 3px; }
+.gallery-card img, .edition-art img { transition: transform .85s cubic-bezier(.2,.7,.2,1), filter .5s ease; }
+.gallery-card:hover img { transform: scale(1.065); filter: saturate(1.12) contrast(1.04); }
+.edition-card { transition: border-color .35s ease, box-shadow .4s ease, transform .4s ease; }
+.edition-card:hover { border-color: #76506d; box-shadow: 0 22px 65px #0005, 0 0 28px #f45caa12; transform: translateY(-3px); }
+.edition-card:hover .edition-art img { transform: scale(1.035); }
+.button { position: relative; isolation: isolate; overflow: hidden; transition: transform .25s ease, background .25s ease, box-shadow .3s ease; }
+.button::after { content: ""; position: absolute; z-index: -1; top: -40%; left: 0; width: 34%; height: 180%; background: linear-gradient(90deg, transparent, #ffffff55, transparent); transform: translateX(-150%) skewX(-18deg); }
+.button:hover::after { animation: vc-shine .75s ease; }
+.button-primary:hover, .button-buy:hover { box-shadow: 0 8px 28px #f45caa42; }
+.header-cta, .scroll-cue, .faq summary { transition: color .25s ease, border-color .25s ease, gap .25s ease; }
+.header-cta:hover { border-color: #f45caa; }
+.scroll-cue:hover { color: #ff8bc5; gap: 17px; }
+.faq details { transition: border-color .25s ease; }
+.faq details[open] { border-color: #76506d; }
+.email-mockup { transition: transform .4s ease, box-shadow .4s ease; }
+.email-mockup:hover { transform: translateY(-4px); box-shadow: 0 30px 85px #0008, 0 0 26px #f45caa12; }
+.email-avatar { animation: vc-glow-pulse 3.5s ease-in-out infinite; }
+.pulse-dot { animation: vc-glow-pulse 2.2s ease-in-out infinite; }
+.trust-row div { transition: background .25s ease, color .25s ease; }
+.trust-row div:hover { background: #f45caa0b; color: #fff; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
