@@ -92,11 +92,11 @@ export default function Page() {
             <ul className="edition-includes">
               <li><Check size={16} /> Jogo digital completo</li>
               <li><Check size={16} /> Código de resgate enviado após confirmação</li>
-              <li><Check size={16} /> Pagamento seguro via SyncPay</li>
+              <li><Check size={16} /> Pagamento seguro no checkout</li>
             </ul>
             <div className="price-row"><div><span className="price-label">PREÇO ESPECIAL</span><p className="price">R$ 419<span>,90</span></p></div><span className="platform-tag"><Gamepad2 size={14} /> PLATAFORMA A CONFIRMAR</span></div>
             <button className="button button-buy" onClick={() => window.dispatchEvent(new Event("open-checkout"))}>Comprar agora <ArrowRight size={17} /></button>
-            <div className="secure-note"><LockKeyhole size={13} /> Checkout processado com segurança <span>·</span> SyncPay</div>
+            <div className="secure-note"><LockKeyhole size={13} /> Checkout processado com segurança</div>
           </div>
         </div>
         <div className="trust-row">
