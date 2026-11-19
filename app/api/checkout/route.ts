@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     const authData = await authResponse.json().catch(() => ({}))
     if (!authResponse.ok || typeof authData.access_token !== 'string') {
       console.error('SyncPay auth failed:', authResponse.status, authData)
-      return NextResponse.json({ error: 'Falha na autenticação SyncPay. Confira as credenciais e a autorização do IP do servidor.' }, { status: 502 })
+      return NextResponse.json({ error: 'Não foi possível iniciar o pagamento. Tente novamente em instantes.' }, { status: 502 })
     }
 
     const chargeResponse = await fetch(API_BASE + '/cash-in', {
@@ -45,7 +45,7 @@ export async function POST(request: Request) {
     const chargeData = await chargeResponse.json().catch(() => ({}))
     if (!chargeResponse.ok || typeof chargeData.pix_code !== 'string' || typeof chargeData.identifier !== 'string') {
       console.error('SyncPay cash-in failed:', chargeResponse.status, chargeData)
-      return NextResponse.json({ error: 'A SyncPay não conseguiu gerar a cobrança. Confira os dados e tente novamente.' }, { status: 502 })
+      return NextResponse.json({ error: 'Não foi possível gerar a cobrança Pix. Confira os dados e tente novamente.' }, { status: 502 })
     }
 
     return NextResponse.json({ pixCode: chargeData.pix_code, identifier: chargeData.identifier })
