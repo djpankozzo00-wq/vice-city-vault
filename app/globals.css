@@ -301,3 +301,32 @@ img { -webkit-user-drag: none; -webkit-touch-callout: none; user-select: none; -
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
+
+
+/* Imagem GTA VI discreta em todo o fundo do site */
+body {
+  background-color: #0b0b10;
+  background-image:
+    linear-gradient(rgba(11, 11, 16, .88), rgba(11, 11, 16, .88)),
+    url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_5fb9e793-f0ba-44c6-98a9-02be26b80b0a-pFHjXNfXl8NDg6NI7ziSS71hB7fGmy.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+.gallery-section,
+.email-preview-section {
+  background-color: rgba(18, 17, 23, .82);
+  background-image: none;
+}
+.edition-card {
+  background: rgba(21, 19, 27, .88);
+  backdrop-filter: blur(3px);
+}
+.faq details,
+.site-footer {
+  background: transparent;
+}
+@media (max-width: 700px) {
+  body { background-attachment: scroll; }
+}
