@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import CheckoutModal from './components/checkout-modal'
 import { ArrowDown, ArrowRight, Check, ChevronDown, Gamepad2, LockKeyhole, ShieldCheck, X } from 'lucide-react'
 
 const gallery = [
@@ -22,8 +22,6 @@ const gallery = [
 ]
 
 export default function Page() {
-  const [checkoutOpen, setCheckoutOpen] = useState(false)
-
   return (
     <main>
       <header className="site-header">
@@ -97,7 +95,7 @@ export default function Page() {
               <li><Check size={16} /> Pagamento seguro via SyncPay</li>
             </ul>
             <div className="price-row"><div><span className="price-label">PREÇO ESPECIAL</span><p className="price">R$ 419<span>,90</span></p></div><span className="platform-tag"><Gamepad2 size={14} /> PLATAFORMA A CONFIRMAR</span></div>
-            <button className="button button-buy" onClick={() => setCheckoutOpen(true)}>Comprar agora <ArrowRight size={17} /></button>
+            <button className="button button-buy" onClick={() => window.dispatchEvent(new Event("open-checkout"))}>Comprar agora <ArrowRight size={17} /></button>
             <div className="secure-note"><LockKeyhole size={13} /> Checkout processado com segurança <span>·</span> SyncPay</div>
           </div>
         </div>
@@ -118,17 +116,7 @@ export default function Page() {
 
       <footer className="site-footer"><a className="wordmark" href="#inicio">VC<span>.</span></a><p>Uma loja independente. Grand Theft Auto e GTA são marcas de seus respectivos proprietários. Esta página não é afiliada nem endossada pela Rockstar Games.</p><span>© 2026 VICE CITY GAMES</span></footer>
 
-      {checkoutOpen && <div className="modal-backdrop" role="presentation" onClick={() => setCheckoutOpen(false)}>
-        <section className="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title" onClick={(event) => event.stopPropagation()}>
-          <button className="modal-close" onClick={() => setCheckoutOpen(false)} aria-label="Fechar"><X size={18} /></button>
-          <span className="edition-overline">PRÓXIMO PASSO</span>
-          <h2 id="checkout-title">Checkout em<br /><em>configuração.</em></h2>
-          <p>A SyncPay ainda não está conectada. O botão de pagamento será ativado quando as credenciais e a confirmação automática do pedido forem configuradas.</p>
-          <div className="modal-total"><span>Grand Theft Auto VI · Digital</span><strong>R$ 419,90</strong></div>
-          <button className="button button-buy" onClick={() => setCheckoutOpen(false)}>Entendi <Check size={16} /></button>
-          <span className="modal-footnote"><LockKeyhole size={13} /> Você não será cobrado nesta etapa.</span>
-        </section>
-      </div>}
+      <CheckoutModal />
     </main>
   )
 }
