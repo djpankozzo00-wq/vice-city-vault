@@ -241,3 +241,7 @@
 
 .email-avatar { overflow: hidden; }
 .email-avatar img { display: block; width: 100%; height: 100%; padding: 5px; object-fit: contain; }
+
+
+/* Proteção básica contra salvamento acidental das imagens */
+img { -webkit-user-drag: none; -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; }
