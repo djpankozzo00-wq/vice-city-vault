@@ -111,7 +111,7 @@ export default function Page() {
         <h2>Informações<br /><em>importantes.</em></h2>
         <details><summary>Como recebo meu código? <ChevronDown size={17} /></summary><p>O código digital será enviado após a confirmação do pagamento. Os detalhes de entrega serão informados antes da finalização da compra.</p></details>
         <details><summary>Para qual plataforma é o jogo? <ChevronDown size={17} /></summary><p>A plataforma e a região de resgate precisam ser confirmadas pelo vendedor antes da compra. Confira essas informações no checkout.</p></details>
-        <details><summary>O pagamento já está disponível? <ChevronDown size={17} /></summary><p>A integração com a SyncPay ainda precisa ser configurada pelo responsável pela loja. Nenhum pagamento será iniciado nesta demonstração.</p></details>
+        <details><summary>O pagamento já está disponível? <ChevronDown size={17} /></summary><p>O pagamento é feito via Pix. Após pagar, aguarde a conferência manual do vendedor para receber seu código digital.</p></details>
       </section>
 
       <footer className="site-footer"><a className="wordmark" href="#inicio">VC<span>.</span></a><p>Uma loja independente. Grand Theft Auto e GTA são marcas de seus respectivos proprietários. Esta página não é afiliada nem endossada pela Rockstar Games.</p><span>© 2026 VICE CITY GAMES</span></footer>
