@@ -94,7 +94,7 @@ export default function Page() {
               <li><Check size={16} /> Código enviado por e-mail após confirmação do Pix</li>
               <li><Check size={16} /> Pagamento seguro no checkout</li>
             </ul>
-            <div className="price-row"><div><span className="price-label">PREÇO ESPECIAL</span><p className="price">R$ 419<span>,90</span></p></div><span className="platform-tag"><Gamepad2 size={14} /> PS5 • XBOX SERIES X|S</span></div>
+            <div className="price-row"><div><span className="price-label">PREÇO ESPECIAL</span><p className="price"><del className="old-price">R$ 419,90</del><span className="current-price">R$ 289,90</span></p></div><span className="platform-tag"><Gamepad2 size={14} /> PS5 • XBOX SERIES X|S</span></div>
             <button className="button button-buy" onClick={() => window.dispatchEvent(new Event("open-checkout"))}>Comprar agora <ArrowRight size={17} /></button>
             <div className="secure-note"><LockKeyhole size={13} /> Checkout processado com segurança</div>
           </div>
