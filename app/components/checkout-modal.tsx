@@ -82,13 +82,13 @@ export default function CheckoutModal() {
         {!pix ? (
           <>
             <h2 id="checkout-title">Finalize sua<br /><em>compra.</em></h2>
-            <p>Informe seus dados para gerar a cobrança Pix. Após a confirmação do pagamento, o código de resgate será enviado para o e-mail informado. Valor: R$ 419,90.</p>
+            <p>Informe seus dados para gerar a cobrança Pix. Após a confirmação do pagamento, o código de resgate será enviado para o e-mail informado. Valor promocional: R$ 289,90.</p>
             <form className="checkout-form" onSubmit={submit}>
               <label>Nome completo<input name="name" autoComplete="name" required minLength={3} placeholder="Seu nome completo" /></label>
               <label>CPF<input name="cpf" inputMode="numeric" autoComplete="off" required minLength={11} maxLength={14} placeholder="000.000.000-00" /></label>
               <label>E-mail<input name="email" type="email" autoComplete="email" required placeholder="voce@email.com" /></label>
               <label>Telefone<input name="phone" type="tel" inputMode="tel" autoComplete="tel" required minLength={10} maxLength={15} placeholder="(00) 00000-0000" /></label>
-              <div className="modal-total"><span>Grand Theft Auto VI · Código digital</span><strong>R$ 419,90</strong></div>
+              <div className="modal-total"><span>Grand Theft Auto VI · Código digital</span><strong>R$ 289,90</strong></div>
               {error && <p className="checkout-error" role="alert">{error}</p>}
               <button className="button button-buy" type="submit" disabled={loading}>
                 {loading ? <>Gerando Pix <LoaderCircle className="spin" size={16} /></> : <>Gerar Pix <LockKeyhole size={16} /></>}
