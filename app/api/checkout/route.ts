@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 
 const API_BASE = 'https://api.syncpayments.com.br/api/partner/v1'
-const PRODUCT_PRICE = 419.9
+const PRODUCT_PRICE = 289.9
 
 export async function POST(request: Request) {
   try {
