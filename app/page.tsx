@@ -1,7 +1,7 @@
 'use client'
 
 import CheckoutModal from './components/checkout-modal'
-import { ArrowDown, ArrowRight, Check, ChevronDown, Gamepad2, LockKeyhole, ShieldCheck, Mail, CheckCircle2 } from 'lucide-react'
+import { ArrowDown, ArrowRight, Check, ChevronDown, Gamepad2, LockKeyhole, ShieldCheck, Mail, CheckCircle2, AlertTriangle } from 'lucide-react'
 
 const gallery = [
   {
@@ -144,6 +144,15 @@ export default function Page() {
 
       <footer className="site-footer"><a className="wordmark" href="#inicio" aria-label="Vice City Games — início"><img src="/gta-6-logo.png" alt="Grand Theft Auto VI" /></a><span>© 2026 VICE CITY GAMES</span></footer>
 
+      <aside className="stock-alert" role="status" aria-label="Aviso de estoque">
+        <div className="stock-alert-icon"><AlertTriangle size={22} /></div>
+        <div className="stock-alert-copy">
+          <strong>ÚLTIMAS UNIDADES DO GTA 6!</strong>
+          <span>O estoque de códigos de resgate está chegando ao fim!</span>
+          <span>Garanta o seu hoje mesmo antes que esgote!</span>
+          <a href="#edicao">GARANTIR MEU CÓDIGO <ArrowRight size={14} /></a>
+        </div>
+      </aside>
       <CheckoutModal />
     </main>
   )
