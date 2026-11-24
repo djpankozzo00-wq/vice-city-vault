@@ -468,3 +468,10 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
   .stock-alert { animation: none; }
 }
+
+
+/* Mantém o botão de compra visível sem rolar demais */
+#botao-compra { scroll-margin-top: 165px; }
+@media (max-width: 700px) {
+  #botao-compra { scroll-margin-top: 145px; }
+}
