@@ -470,8 +470,8 @@ body::before {
 }
 
 
-/* Mantém o botão de compra visível sem rolar demais */
-#botao-compra { scroll-margin-top: 165px; }
+/* Posiciona o botão de compra na parte inferior da tela, como na referência */
+#botao-compra { scroll-margin-top: 72vh; }
 @media (max-width: 700px) {
-  #botao-compra { scroll-margin-top: 145px; }
+  #botao-compra { scroll-margin-top: 86svh; }
 }
