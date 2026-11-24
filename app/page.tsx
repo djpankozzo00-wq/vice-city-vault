@@ -152,7 +152,7 @@ export default function Page() {
 
       <footer className="site-footer"><a className="wordmark" href="#inicio" aria-label="Vice City Games — início"><img src="/gta-6-logo.png" alt="Grand Theft Auto VI" /></a><span>© 2026 VICE CITY GAMES</span></footer>
 
-      {showStockAlert && <aside className="stock-alert" role="status" aria-label="Aviso de estoque">
+      {showStockAlert && <aside className="stock-alert" role="status" aria-label="Aviso de estoque" onClick={() => setShowStockAlert(false)}>
         <div className="stock-alert-icon"><AlertTriangle size={22} /></div>
         <div className="stock-alert-copy">
           <strong>ÚLTIMAS UNIDADES DO GTA 6!</strong>
