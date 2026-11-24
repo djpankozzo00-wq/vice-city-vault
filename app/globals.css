@@ -389,3 +389,82 @@ body::before {
   font-weight: 800;
   letter-spacing: -.05em;
 }
+
+
+/* Notificação flutuante de estoque */
+.stock-alert {
+  position: fixed;
+  z-index: 18;
+  right: 22px;
+  bottom: 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  width: min(430px, calc(100vw - 28px));
+  padding: 17px 18px;
+  border: 1px solid #ff7777;
+  border-left: 5px solid #ff2929;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #a90914 0%, #650711 100%);
+  color: #fff;
+  box-shadow: 0 12px 38px #000b, 0 0 24px #ff171744;
+  animation: stock-alert-in .65s cubic-bezier(.2,.8,.2,1) both, stock-alert-pulse 2.8s ease-in-out 1s infinite;
+}
+.stock-alert-icon {
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #ffffff20;
+  color: #fff;
+}
+.stock-alert-copy { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.stock-alert-copy strong {
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 900;
+  letter-spacing: .025em;
+}
+.stock-alert-copy span { color: #ffe7e7; font-size: 11px; line-height: 1.45; }
+.stock-alert-copy a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin-top: 6px;
+  padding: 8px 11px;
+  border-radius: 4px;
+  background: #fff;
+  color: #9b0711;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  transition: transform .2s ease, background .2s ease;
+}
+.stock-alert-copy a:hover { transform: translateY(-2px); background: #ffe5e5; }
+@keyframes stock-alert-in {
+  from { opacity: 0; transform: translate3d(0, 22px, 0) scale(.97); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes stock-alert-pulse {
+  0%, 100% { box-shadow: 0 12px 38px #000b, 0 0 16px #ff171722; }
+  50% { box-shadow: 0 12px 38px #000b, 0 0 28px #ff171766; }
+}
+@media (max-width: 600px) {
+  .stock-alert {
+    right: 12px;
+    bottom: 12px;
+    width: calc(100vw - 24px);
+    padding: 14px;
+    gap: 10px;
+  }
+  .stock-alert-icon { flex-basis: 34px; width: 34px; height: 34px; }
+  .stock-alert-copy strong { font-size: 12px; }
+  .stock-alert-copy span { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stock-alert { animation: none; }
+}
