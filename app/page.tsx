@@ -1,6 +1,7 @@
 'use client'
 
 import CheckoutModal from './components/checkout-modal'
+import { useEffect, useState } from 'react'
 import { ArrowDown, ArrowRight, Check, ChevronDown, Gamepad2, LockKeyhole, ShieldCheck, Mail, CheckCircle2, AlertTriangle } from 'lucide-react'
 
 const gallery = [
@@ -22,6 +23,13 @@ const gallery = [
 ]
 
 export default function Page() {
+  const [showStockAlert, setShowStockAlert] = useState(true)
+
+  useEffect(() => {
+    const timeout = window.setTimeout(() => setShowStockAlert(false), 30_000)
+    return () => window.clearTimeout(timeout)
+  }, [])
+
   return (
     <main onContextMenu={(event) => event.preventDefault()} onDragStart={(event) => event.preventDefault()}>
       <header className="site-header">
@@ -144,7 +152,7 @@ export default function Page() {
 
       <footer className="site-footer"><a className="wordmark" href="#inicio" aria-label="Vice City Games — início"><img src="/gta-6-logo.png" alt="Grand Theft Auto VI" /></a><span>© 2026 VICE CITY GAMES</span></footer>
 
-      <aside className="stock-alert" role="status" aria-label="Aviso de estoque">
+      {showStockAlert && <aside className="stock-alert" role="status" aria-label="Aviso de estoque">
         <div className="stock-alert-icon"><AlertTriangle size={22} /></div>
         <div className="stock-alert-copy">
           <strong>ÚLTIMAS UNIDADES DO GTA 6!</strong>
@@ -152,7 +160,7 @@ export default function Page() {
           <span>Garanta o seu hoje mesmo antes que esgote!</span>
           <a href="#edicao">GARANTIR MEU CÓDIGO <ArrowRight size={14} /></a>
         </div>
-      </aside>
+      </aside>}
       <CheckoutModal />
     </main>
   )
