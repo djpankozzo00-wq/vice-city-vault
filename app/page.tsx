@@ -39,7 +39,7 @@ export default function Page() {
           <a href="#galeria">Galeria</a>
           <a href="#edicao">Edição digital</a>
         </nav>
-        <a className="header-cta" href="#edicao">Comprar <ArrowRight size={15} /></a>
+        <a className="header-cta" href="#botao-compra">Comprar <ArrowRight size={15} /></a>
       </header>
 
       <section className="hero" id="inicio">
@@ -50,7 +50,7 @@ export default function Page() {
           <p className="hero-kicker">Bem-vindo ao estado de</p>
           <h1>VICE<br /><span>CITY</span></h1>
           <p className="hero-copy">Uma cidade. Duas histórias. Um mundo sem limites.</p>
-          <a className="button button-primary" href="#edicao">Compre sua cópia <ArrowRight size={17} /></a>
+          <a className="button button-primary" href="#botao-compra">Compre sua cópia <ArrowRight size={17} /></a>
           <a className="scroll-cue" href="#sobre"><ArrowDown size={15} /> Explore o jogo</a>
         </div>
         <div className="hero-index"><span>01</span><i /> 04</div>
@@ -103,7 +103,7 @@ export default function Page() {
               <li><Check size={16} /> Pagamento seguro no checkout</li>
             </ul>
             <div className="price-row"><div><span className="price-label">PREÇO ESPECIAL</span><p className="price"><del className="old-price">R$ 419,90</del><span className="current-price">R$ 289,90</span></p></div><span className="platform-tag"><Gamepad2 size={14} /> PS5 • XBOX SERIES X|S</span></div>
-            <button className="button button-buy" onClick={() => window.dispatchEvent(new Event("open-checkout"))}>Comprar agora <ArrowRight size={17} /></button>
+            <button id="botao-compra" className="button button-buy" onClick={() => window.dispatchEvent(new Event("open-checkout"))}>Comprar agora <ArrowRight size={17} /></button>
             <div className="secure-note"><LockKeyhole size={13} /> Checkout processado com segurança</div>
           </div>
         </div>
@@ -158,7 +158,7 @@ export default function Page() {
           <strong>ÚLTIMAS UNIDADES DO GTA 6!</strong>
           <span>O estoque de códigos de resgate está chegando ao fim!</span>
           <span>Garanta o seu hoje mesmo antes que esgote!</span>
-          <a href="#edicao">GARANTIR MEU CÓDIGO <ArrowRight size={14} /></a>
+          <a href="#botao-compra">GARANTIR MEU CÓDIGO <ArrowRight size={14} /></a>
         </div>
       </aside>}
       <CheckoutModal />
