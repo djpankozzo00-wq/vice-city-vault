@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from 'react'
 import { Activity, Eye, MousePointerClick, RefreshCw, ShieldCheck, Users, LogOut } from 'lucide-react'
 
 type Visitor = { visitorId: string; firstSeenAt: string; lastSeenAt: string; visitCount: number; userAgent: string | null; referrer: string | null; online: boolean }
@@ -41,7 +41,7 @@ export default function AdminPage() {
     return () => window.clearInterval(timer)
   }, [logged, load])
 
-  async function login(event: React.FormEvent<HTMLFormElement>) {
+  async function login(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setError('')
     const response = await fetch('/api/admin/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password }) })
@@ -112,6 +112,6 @@ export default function AdminPage() {
   )
 }
 
-function Stat({ icon, label, value, accent = false }: { icon: React.ReactNode; label: string; value: string | number; accent?: boolean }) {
+function Stat({ icon, label, value, accent = false }: { icon: ReactNode; label: string; value: string | number; accent?: boolean }) {
   return <article className="rounded-xl border border-white/10 bg-[#14131a] p-5"><div className="flex items-center justify-between text-white/50"><span className="text-sm">{label}</span><span className={accent ? 'text-emerald-300' : 'text-pink-300'}>{icon}</span></div><p className="mt-3 text-3xl font-bold tabular-nums">{value}</p></article>
 }
