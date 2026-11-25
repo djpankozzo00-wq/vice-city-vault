@@ -82,7 +82,7 @@ export default function CheckoutModal() {
         {!pix ? (
           <>
             <h2 id="checkout-title">Finalize sua<br /><em>compra.</em></h2>
-            <p>Informe seus dados para gerar a cobrança Pix. Após a confirmação do pagamento, o código de resgate será enviado para o e-mail informado. Valor promocional: R$ 289,90.</p>
+            <p>Informe seus dados para gerar a cobrança Pix. Após a confirmação, o vendedor enviará manualmente o código de resgate para o e-mail informado. Valor promocional: R$ 289,90.</p>
             <form className="checkout-form" onSubmit={submit}>
               <label>Nome completo<input name="name" autoComplete="name" required minLength={3} placeholder="Seu nome completo" /></label>
               <label>CPF<input name="cpf" inputMode="numeric" autoComplete="off" required minLength={11} maxLength={14} placeholder="000.000.000-00" /></label>
@@ -94,14 +94,14 @@ export default function CheckoutModal() {
                 {loading ? <>Gerando Pix <LoaderCircle className="spin" size={16} /></> : <>Gerar Pix <LockKeyhole size={16} /></>}
               </button>
             </form>
-            <span className="modal-footnote"><LockKeyhole size={13} /> Confira seu e-mail: é nele que você receberá o código de resgate após a confirmação do pagamento.</span>
+            <span className="modal-footnote"><LockKeyhole size={13} /> Após a confirmação do pagamento, o vendedor enviará o código manualmente para este e-mail.</span>
           </>
         ) : (
           <>
             <h2 id="checkout-title">Pix <em>gerado.</em></h2>
             {secondsLeft > 0 ? (
               <>
-                <p>Escaneie o QR Code ou copie o código Pix. Após a confirmação do pagamento, o código do jogo será enviado para o e-mail informado no pedido.</p>
+                <p>Escaneie o QR Code ou copie o código Pix. Após a confirmação, o vendedor enviará o código do jogo manualmente para o e-mail informado no pedido.</p>
                 <div className="pix-countdown" role="timer" aria-live="off">Expira em <strong>00:{String(secondsLeft).padStart(2, '0')}</strong></div>
                 <div className="pix-qr">
                   <img src={'https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=' + encodeURIComponent(pix.pixCode)} alt="QR Code para pagamento Pix" />

@@ -128,10 +128,10 @@ export default function Page() {
           <div className="edition-details">
             <span className="edition-overline">GRAND THEFT AUTO VI</span>
             <h2>Seu lugar<br />é em Vice City.</h2>
-            <p className="edition-description">Grand Theft Auto VI já está disponível. Escolha sua plataforma e receba o código digital de resgate por e-mail após a confirmação do pagamento.</p>
+            <p className="edition-description">Grand Theft Auto VI já está disponível. Escolha sua plataforma e, após a confirmação do Pix, o código será enviado manualmente para o e-mail informado na compra.</p>
             <ul className="edition-includes">
               <li><Check size={16} /> Versão digital completa</li>
-              <li><Check size={16} /> Código enviado por e-mail após confirmação do Pix</li>
+              <li><Check size={16} /> Código enviado manualmente por e-mail após confirmação do Pix</li>
               <li><Check size={16} /> Pagamento seguro no checkout</li>
             </ul>
             <div className="price-row"><div><span className="price-label">PREÇO ESPECIAL</span><p className="price"><del className="old-price">R$ 419,90</del><span className="current-price">R$ 289,90</span></p></div><span className="platform-tag"><Gamepad2 size={14} /> PS5 • XBOX SERIES X|S</span></div>
@@ -151,8 +151,8 @@ export default function Page() {
         <div className="section-label"><span>04 / COMO VOCÊ VAI RECEBER</span><span className="label-line" /></div>
         <div className="email-preview-heading">
           <div>
-            <h2>Seu código<br /><em>chega por e-mail.</em></h2>
-            <p>Depois que o pagamento for confirmado, enviaremos o código de resgate para o e-mail informado na compra. Veja um exemplo de como a mensagem será apresentada:</p>
+            <h2>Seu código<br /><em>será enviado manualmente.</em></h2>
+            <p>Depois que o Pix for confirmado, o vendedor enviará manualmente o código de resgate para o e-mail informado na compra. Veja um exemplo da mensagem:</p>
           </div>
           <span className="email-preview-badge"><Mail size={15} /> EXEMPLO DE E-MAIL</span>
         </div>
@@ -171,15 +171,14 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <p className="email-preview-disclaimer">Esta imagem é apenas uma demonstração. O código real será enviado somente após a confirmação do pagamento.</p>
+        <p className="email-preview-disclaimer">Esta imagem é apenas uma demonstração. O código real será enviado manualmente pelo vendedor após a confirmação do Pix.</p>
       </section>
 
       <section className="faq section-wrap">
         <div className="section-label"><span>05 / ANTES DE COMPRAR</span><span className="label-line" /></div>
         <h2>Informações<br /><em>importantes.</em></h2>
-        <details><summary>Como recebo meu código? <ChevronDown size={17} /></summary><p>Após a confirmação do pagamento via Pix, o código digital de resgate será enviado para o endereço de e-mail informado no checkout. Confira se o e-mail foi digitado corretamente e verifique também a caixa de spam.</p></details>
+        <details><summary>Como recebo meu código? <ChevronDown size={17} /></summary><p>Após a confirmação do pagamento via Pix, o vendedor enviará manualmente o código digital de resgate para o e-mail informado no checkout. Confira se o endereço está correto.</p></details>
         <details><summary>Para qual plataforma é o jogo? <ChevronDown size={17} /></summary><p>O jogo está disponível para PlayStation 5 e Xbox Series X|S. Antes de pagar, confirme com o vendedor qual plataforma corresponde ao código que você está comprando e se a região é compatível com sua conta.</p></details>
-        
       </section>
 
       <footer className="site-footer"><a className="wordmark" href="#inicio" aria-label="Vice City Games — início"><img src="/gta-6-logo.png" alt="Grand Theft Auto VI" /></a><span>© 2026 VICE CITY GAMES</span></footer>
