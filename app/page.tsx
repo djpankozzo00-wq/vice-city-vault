@@ -30,6 +30,38 @@ export default function Page() {
     return () => window.clearTimeout(timeout)
   }, [])
 
+  useEffect(() => {
+    let visitorId = window.localStorage.getItem('vcv_visitor_id')
+    if (!visitorId) {
+      visitorId = window.crypto.randomUUID()
+      window.localStorage.setItem('vcv_visitor_id', visitorId)
+    }
+    const sendHeartbeat = () => {
+      void fetch('/api/analytics/heartbeat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ visitorId, referrer: document.referrer || null }),
+        keepalive: true,
+      }).catch(() => {})
+    }
+    sendHeartbeat()
+    const interval = window.setInterval(sendHeartbeat, 30_000)
+    return () => window.clearInterval(interval)
+  }, [])
+
+  function trackPurchaseClick() {
+    const visitorId = window.localStorage.getItem('vcv_visitor_id')
+    if (visitorId) {
+      void fetch('/api/analytics/purchase', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ visitorId, pagePath: window.location.pathname }),
+        keepalive: true,
+      }).catch(() => {})
+    }
+    window.dispatchEvent(new Event('open-checkout'))
+  }
+
   return (
     <main onContextMenu={(event) => event.preventDefault()} onDragStart={(event) => event.preventDefault()}>
       <header className="site-header">
@@ -103,7 +135,7 @@ export default function Page() {
               <li><Check size={16} /> Pagamento seguro no checkout</li>
             </ul>
             <div className="price-row"><div><span className="price-label">PREÇO ESPECIAL</span><p className="price"><del className="old-price">R$ 419,90</del><span className="current-price">R$ 289,90</span></p></div><span className="platform-tag"><Gamepad2 size={14} /> PS5 • XBOX SERIES X|S</span></div>
-            <button id="botao-compra" className="button button-buy" onClick={() => window.dispatchEvent(new Event("open-checkout"))}>Comprar agora <ArrowRight size={17} /></button>
+            <button id="botao-compra" className="button button-buy" onClick={trackPurchaseClick}>Comprar agora <ArrowRight size={17} /></button>
             <div className="secure-note"><LockKeyhole size={13} /> Checkout processado com segurança</div>
           </div>
         </div>
