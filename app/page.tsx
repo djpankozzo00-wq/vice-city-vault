@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { ArrowDown, ArrowRight, Check, ChevronDown, Gamepad2, LockKeyhole, ShieldCheck, X } from 'lucide-react'
+import CheckoutModal from './components/checkout-modal'
+import { useEffect, useState } from 'react'
+import { ArrowDown, ArrowRight, Check, ChevronDown, Gamepad2, LockKeyhole, ShieldCheck, Mail, CheckCircle2, AlertTriangle } from 'lucide-react'
 
 const gallery = [
   {
@@ -22,10 +23,47 @@ const gallery = [
 ]
 
 export default function Page() {
-  const [checkoutOpen, setCheckoutOpen] = useState(false)
+  const [showStockAlert, setShowStockAlert] = useState(true)
+
+  useEffect(() => {
+    const timeout = window.setTimeout(() => setShowStockAlert(false), 30_000)
+    return () => window.clearTimeout(timeout)
+  }, [])
+
+  useEffect(() => {
+    let visitorId = window.localStorage.getItem('vcv_visitor_id')
+    if (!visitorId) {
+      visitorId = window.crypto.randomUUID()
+      window.localStorage.setItem('vcv_visitor_id', visitorId)
+    }
+    const sendHeartbeat = () => {
+      void fetch('/api/analytics/heartbeat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ visitorId, referrer: document.referrer || null }),
+        keepalive: true,
+      }).catch(() => {})
+    }
+    sendHeartbeat()
+    const interval = window.setInterval(sendHeartbeat, 30_000)
+    return () => window.clearInterval(interval)
+  }, [])
+
+  function trackPurchaseClick() {
+    const visitorId = window.localStorage.getItem('vcv_visitor_id')
+    if (visitorId) {
+      void fetch('/api/analytics/purchase', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ visitorId, pagePath: window.location.pathname }),
+        keepalive: true,
+      }).catch(() => {})
+    }
+    window.dispatchEvent(new Event('open-checkout'))
+  }
 
   return (
-    <main>
+    <main onContextMenu={(event) => event.preventDefault()} onDragStart={(event) => event.preventDefault()}>
       <header className="site-header">
         <a className="wordmark" href="#inicio" aria-label="Vice City Games — início"><img src="/gta-6-logo.png" alt="Grand Theft Auto VI" /></a>
         <nav className="desktop-nav" aria-label="Navegação principal">
@@ -33,18 +71,18 @@ export default function Page() {
           <a href="#galeria">Galeria</a>
           <a href="#edicao">Edição digital</a>
         </nav>
-        <a className="header-cta" href="#edicao">Pré-venda <ArrowRight size={15} /></a>
+        <a className="header-cta" href="#botao-compra">Comprar <ArrowRight size={15} /></a>
       </header>
 
       <section className="hero" id="inicio">
         <div className="hero-image" role="img" aria-label="Jason e Lucia em um carro, com a paisagem ensolarada de Vice City ao fundo" />
         <div className="hero-overlay" />
         <div className="hero-content">
-          <div className="eyebrow"><span className="eyebrow-line" /> A próxima grande aventura começa aqui</div>
+          <div className="eyebrow"><span className="eyebrow-line" /> O jogo já está disponível</div>
           <p className="hero-kicker">Bem-vindo ao estado de</p>
           <h1>VICE<br /><span>CITY</span></h1>
           <p className="hero-copy">Uma cidade. Duas histórias. Um mundo sem limites.</p>
-          <a className="button button-primary" href="#edicao">Garanta sua cópia <ArrowRight size={17} /></a>
+          <a className="button button-primary" href="#botao-compra">Compre sua cópia <ArrowRight size={17} /></a>
           <a className="scroll-cue" href="#sobre"><ArrowDown size={15} /> Explore o jogo</a>
         </div>
         <div className="hero-index"><span>01</span><i /> 04</div>
@@ -58,7 +96,7 @@ export default function Page() {
           <div className="intro-copy">
             <p>Vice City é mais do que um lugar — é um estado de espírito. Entre praias douradas, noites elétricas e oportunidades perigosas, cada escolha pode mudar tudo.</p>
             <p>Conheça Lucia e Jason: dois parceiros tentando sobreviver em um mundo que nunca joga limpo.</p>
-            <div className="release-note"><span className="pulse-dot" /> Grand Theft Auto VI <span className="note-divider">/</span> Uma nova era está chegando</div>
+            <div className="release-note"><span className="pulse-dot" /> Grand Theft Auto VI <span className="note-divider">/</span> Já disponível para jogar</div>
           </div>
         </div>
       </section>
@@ -90,15 +128,15 @@ export default function Page() {
           <div className="edition-details">
             <span className="edition-overline">GRAND THEFT AUTO VI</span>
             <h2>Seu lugar<br />é em Vice City.</h2>
-            <p className="edition-description">Prepare-se para descobrir uma história inesquecível em um mundo aberto extraordinário.</p>
+            <p className="edition-description">Grand Theft Auto VI já está disponível. Escolha sua plataforma e, após a confirmação do Pix, o código será enviado manualmente para o e-mail informado na compra.</p>
             <ul className="edition-includes">
-              <li><Check size={16} /> Jogo digital completo</li>
-              <li><Check size={16} /> Código de resgate enviado após confirmação</li>
+              <li><Check size={16} /> Versão digital completa</li>
+              <li><Check size={16} /> Código enviado manualmente por e-mail após confirmação do Pix</li>
               <li><Check size={16} /> Pagamento seguro no checkout</li>
             </ul>
-            <div className="price-row"><div><span className="price-label">PREÇO ESPECIAL</span><p className="price">R$ 419<span>,90</span></p></div><span className="platform-tag"><Gamepad2 size={14} /> PLATAFORMA A CONFIRMAR</span></div>
-            <button className="button button-buy" onClick={() => setCheckoutOpen(true)}>Comprar agora <ArrowRight size={17} /></button>
-            <div className="secure-note"><LockKeyhole size={13} /> Checkout seguro após configuração</div>
+            <div className="price-row"><div><span className="price-label">PREÇO ESPECIAL</span><p className="price"><del className="old-price">R$ 419,90</del><span className="current-price">R$ 289,90</span></p></div><span className="platform-tag"><Gamepad2 size={14} /> PS5 • XBOX SERIES X|S</span></div>
+            <button id="botao-compra" className="button button-buy" onClick={trackPurchaseClick}>Comprar agora <ArrowRight size={17} /></button>
+            <div className="secure-note"><LockKeyhole size={13} /> Checkout processado com segurança</div>
           </div>
         </div>
         <div className="trust-row">
@@ -108,27 +146,53 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="faq section-wrap">
-        <div className="section-label"><span>04 / ANTES DE COMPRAR</span><span className="label-line" /></div>
-        <h2>Informações<br /><em>importantes.</em></h2>
-        <details><summary>Como recebo meu código? <ChevronDown size={17} /></summary><p>O código digital será enviado após a confirmação do pagamento. Os detalhes de entrega serão informados antes da finalização da compra.</p></details>
-        <details><summary>Para qual plataforma é o jogo? <ChevronDown size={17} /></summary><p>A plataforma e a região de resgate precisam ser confirmadas pelo vendedor antes da compra. Confira essas informações no checkout.</p></details>
-        <details><summary>O pagamento já está disponível? <ChevronDown size={17} /></summary><p>O sistema de pagamento ainda precisa ser configurado pelo responsável pela loja. Nenhum pagamento será iniciado nesta demonstração.</p></details>
+
+      <section className="email-preview-section section-wrap" id="entrega">
+        <div className="section-label"><span>04 / COMO VOCÊ VAI RECEBER</span><span className="label-line" /></div>
+        <div className="email-preview-heading">
+          <div>
+            <h2>Seu código<br /><em>será enviado manualmente.</em></h2>
+            <p>Depois que o Pix for confirmado, o vendedor enviará manualmente o código de resgate para o e-mail informado na compra. Veja um exemplo da mensagem:</p>
+          </div>
+          <span className="email-preview-badge"><Mail size={15} /> EXEMPLO DE E-MAIL</span>
+        </div>
+        <div className="email-mockup">
+          <div className="email-window-top"><span className="email-window-dots"><i /><i /><i /></span><span>Caixa de entrada</span><span className="email-window-icon"><Mail size={15} /></span></div>
+          <div className="email-message">
+            <div className="email-sender-row"><div className="email-avatar"><img src="/gta-6-logo.png" alt="Logotipo Vice City Vault" /></div><div className="email-sender"><strong>Vice City Vault</strong><span>para você</span></div><span className="email-time">Agora</span></div>
+            <div className="email-subject">Seu código de resgate chegou!</div>
+            <div className="email-body">
+              <p>Olá!</p>
+              <p>Seu pagamento foi confirmado. Agradecemos pela sua compra! Aqui está o seu código de resgate do <strong>Grand Theft Auto VI</strong>:</p>
+              <div className="redeem-code"><span>CÓDIGO DE RESGATE</span><strong>XXXX-XXXX-XXXX-XXXX</strong></div>
+              <p>Use este código na plataforma correspondente para resgatar seu jogo. Confira se a plataforma e a região são compatíveis com sua conta.</p>
+              <div className="email-success"><CheckCircle2 size={16} /> Pagamento confirmado</div>
+              <p className="email-signature">Atenciosamente,<br /><strong>Equipe Vice City Vault</strong></p>
+            </div>
+          </div>
+        </div>
+        <p className="email-preview-disclaimer">Esta imagem é apenas uma demonstração. O código real será enviado manualmente pelo vendedor após a confirmação do Pix.</p>
       </section>
 
-      <footer className="site-footer"><a className="wordmark" href="#inicio" aria-label="Vice City Games — início"><img src="/gta-6-logo.png" alt="Grand Theft Auto VI" /></a><p>Uma loja independente. Grand Theft Auto e GTA são marcas de seus respectivos proprietários. Esta página não é afiliada nem endossada pela Rockstar Games.</p><span>© 2026 VICE CITY GAMES</span></footer>
+      <section className="faq section-wrap">
+        <div className="section-label"><span>05 / ANTES DE COMPRAR</span><span className="label-line" /></div>
+        <h2>Informações<br /><em>importantes.</em></h2>
+        <details><summary>Como recebo meu código? <ChevronDown size={17} /></summary><p>Após a confirmação do pagamento via Pix, o vendedor enviará manualmente o código digital de resgate para o e-mail informado no checkout. Confira se o endereço está correto.</p></details>
+        <details><summary>Para qual plataforma é o jogo? <ChevronDown size={17} /></summary><p>O jogo está disponível para PlayStation 5 e Xbox Series X|S. Antes de pagar, confirme com o vendedor qual plataforma corresponde ao código que você está comprando e se a região é compatível com sua conta.</p></details>
+      </section>
 
-      {checkoutOpen && <div className="modal-backdrop" role="presentation" onClick={() => setCheckoutOpen(false)}>
-        <section className="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title" onClick={(event) => event.stopPropagation()}>
-          <button className="modal-close" onClick={() => setCheckoutOpen(false)} aria-label="Fechar"><X size={18} /></button>
-          <span className="edition-overline">PRÓXIMO PASSO</span>
-          <h2 id="checkout-title">Checkout em<br /><em>configuração.</em></h2>
-          <p>O sistema de pagamento ainda não está conectado. O botão será ativado quando o checkout e a confirmação automática do pedido forem configurados.</p>
-          <div className="modal-total"><span>Grand Theft Auto VI · Digital</span><strong>R$ 419,90</strong></div>
-          <button className="button button-buy" onClick={() => setCheckoutOpen(false)}>Entendi <Check size={16} /></button>
-          <span className="modal-footnote"><LockKeyhole size={13} /> Você não será cobrado nesta etapa.</span>
-        </section>
-      </div>}
+      <footer className="site-footer"><a className="wordmark" href="#inicio" aria-label="Vice City Games — início"><img src="/gta-6-logo.png" alt="Grand Theft Auto VI" /></a><span>© 2026 VICE CITY GAMES</span></footer>
+
+      {showStockAlert && <aside className="stock-alert" role="status" aria-label="Aviso de estoque" onClick={() => setShowStockAlert(false)}>
+        <div className="stock-alert-icon"><AlertTriangle size={22} /></div>
+        <div className="stock-alert-copy">
+          <strong>ÚLTIMAS UNIDADES DO GTA 6!</strong>
+          <span>O estoque de códigos de resgate está chegando ao fim!</span>
+          <span>Garanta o seu hoje mesmo antes que esgote!</span>
+          <a href="#botao-compra">GARANTIR MEU CÓDIGO <ArrowRight size={14} /></a>
+        </div>
+      </aside>}
+      <CheckoutModal />
     </main>
   )
 }

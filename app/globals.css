@@ -96,8 +96,10 @@
   display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ffffff25;
   color: #fff;
 }
-.wordmark { display: flex; flex: 0 0 auto; align-items: center; justify-content: center; width: 52px; height: 46px; }
-.wordmark img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.wordmark { display: inline-flex; align-items: center; line-height: 1; }
+.wordmark img { display: block; width: 112px; height: 48px; object-fit: contain; }
+.site-footer .wordmark img { width: 100px; height: 44px; }
+@media (max-width: 640px) { .wordmark img { width: 94px; height: 42px; } .site-footer .wordmark img { width: 88px; height: 40px; } }
 .desktop-nav { display: flex; gap: 38px; margin-left: 70px; }
 .desktop-nav a { color: #ffffffc7; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; transition: color .2s; }
 .desktop-nav a:hover { color: #fff; }
@@ -157,3 +159,319 @@
 }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
+
+
+/* SyncPay Pix checkout */
+.checkout-modal-wide { max-height: min(92svh, 850px); overflow-y: auto; }
+.checkout-form { display: flex; flex-direction: column; gap: 13px; margin-top: 22px; }
+.checkout-form label, .pix-code-label { display: flex; flex-direction: column; gap: 7px; color: #d9d2dd; font-size: 10px; letter-spacing: .04em; }
+.checkout-form input, .pix-code-label textarea { width: 100%; min-height: 43px; padding: 11px 12px; border: 1px solid #403744; border-radius: 2px; outline: none; background: #0e0c13; color: #fff; font: inherit; font-size: 12px; letter-spacing: normal; }
+.checkout-form input:focus, .pix-code-label textarea:focus { border-color: #f45caa; }
+.checkout-form input::placeholder { color: #716a78; }
+.checkout-form .modal-total { margin: 8px 0 0; }
+.checkout-form .button:disabled { opacity: .65; cursor: wait; transform: none; }
+.checkout-error { margin: 0; color: #ff9b9b !important; font-size: 11px !important; }
+.spin { animation: checkout-spin 1s linear infinite; }
+@keyframes checkout-spin { to { transform: rotate(360deg); } }
+.pix-qr { display: grid; place-items: center; margin: 22px auto; padding: 12px; width: fit-content; background: #fff; border-radius: 4px; }
+.pix-qr img { display: block; width: 210px; height: 210px; }
+.pix-code-label textarea { resize: vertical; min-height: 94px; overflow-wrap: anywhere; }
+.manual-confirmation { margin: 17px 0 0 !important; padding: 12px; border-left: 2px solid #75d8e8; background: #0e0c13; color: #d0c8d4 !important; font-size: 10px !important; }
+.checkout-modal .button { gap: 12px; }
+@media (max-width: 700px) {
+  .checkout-modal-wide { padding: 34px 22px 26px; }
+  .pix-qr img { width: 190px; height: 190px; }
+}
+
+
+.pix-countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 18px 0;
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: var(--muted, #a1a1aa);
+}
+
+.pix-countdown strong {
+  color: var(--foreground, #fff);
+  font-variant-numeric: tabular-nums;
+  font-size: 22px;
+  letter-spacing: .08em;
+}
+
+.pix-expired {
+  margin: 28px 0;
+  text-align: center;
+  font-weight: 600;
+}
+
+
+.email-preview-section { padding-top: 35px; padding-bottom: 105px; background: #121117; }
+.email-preview-heading { display: flex; justify-content: space-between; align-items: end; gap: 25px; margin: 37px 0 32px; }
+.email-preview-heading h2 { margin: 0; font-size: clamp(42px, 6vw, 66px); line-height: .98; letter-spacing: -.06em; }
+.email-preview-heading h2 em { color: #f45caa; font-style: normal; }
+.email-preview-heading p { max-width: 540px; margin: 18px 0 0; color: #aaa4ae; font-size: 12px; line-height: 1.8; }
+.email-preview-badge { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; padding: 10px 13px; border: 1px solid #554454; color: #f7a5ce; font-size: 8px; letter-spacing: .12em; }
+.email-mockup { max-width: 760px; margin: 0 auto; overflow: hidden; border: 1px solid #403744; border-radius: 8px; background: #f8f7fb; color: #28232d; box-shadow: 0 24px 70px #0006; }
+.email-window-top { display: flex; align-items: center; justify-content: space-between; padding: 13px 18px; background: #eeebf1; color: #716a78; font-size: 10px; }
+.email-window-dots { display: flex; gap: 5px; }.email-window-dots i { width: 7px; height: 7px; border-radius: 50%; background: #c4bdca; }
+.email-window-icon { display: flex; color: #8d8493; }
+.email-message { max-width: 590px; margin: 0 auto; padding: 28px 32px 32px; }
+.email-sender-row { display: flex; align-items: center; gap: 11px; }
+.email-avatar { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: #292033; color: #ff8bc5; font-size: 11px; font-weight: 800; }
+.email-sender { display: flex; flex-direction: column; gap: 3px; font-size: 11px; }.email-sender span, .email-time { color: #8b8490; font-size: 9px; }.email-time { margin-left: auto; }
+.email-subject { margin: 26px 0 18px; color: #26212b; font-size: 21px; font-weight: 750; letter-spacing: -.03em; }
+.email-body { color: #554e5a; font-size: 12px; line-height: 1.8; }.email-body p { margin: 0 0 14px; }.email-body strong { color: #29232e; }
+.redeem-code { display: flex; flex-direction: column; align-items: center; gap: 9px; margin: 24px 0; padding: 21px 12px; border: 1px dashed #d47caf; border-radius: 5px; background: #fff5fa; text-align: center; }
+.redeem-code span { color: #9a6683; font-size: 8px; font-weight: 700; letter-spacing: .16em; }.redeem-code strong { color: #28212d; font-size: clamp(17px, 3vw, 24px); letter-spacing: .07em; font-variant-numeric: tabular-nums; }
+.email-success { display: flex; align-items: center; gap: 8px; width: fit-content; margin: 20px 0; padding: 8px 11px; border-radius: 4px; background: #eaf7f0; color: #26744b; font-size: 10px; font-weight: 700; }.email-signature { padding-top: 14px; border-top: 1px solid #ece8ef; }
+.email-preview-disclaimer { max-width: 760px; margin: 15px auto 0; color: #918a96; font-size: 9px; line-height: 1.7; text-align: center; }
+@media (max-width: 700px) {
+ .email-preview-section { padding-top: 15px; padding-bottom: 75px; }
+ .email-preview-heading { align-items: flex-start; flex-direction: column; margin: 30px 0 23px; gap: 17px; }
+ .email-preview-heading h2 { font-size: 49px; }
+ .email-preview-heading p { font-size: 11px; }
+ .email-message { padding: 23px 18px 25px; }
+ .email-subject { font-size: 18px; }
+ .redeem-code { padding: 18px 8px; }
+}
+
+.email-avatar { overflow: hidden; }
+.email-avatar img { display: block; width: 100%; height: 100%; padding: 5px; object-fit: contain; }
+
+
+/* Proteção básica contra salvamento acidental das imagens */
+img { -webkit-user-drag: none; -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; }
+
+
+/* Animações premium — Vice City Vault */
+@keyframes vc-fade-up {
+  from { opacity: 0; transform: translate3d(0, 24px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes vc-soft-zoom {
+  from { opacity: .65; transform: scale(1.045); }
+  to { opacity: 1; transform: scale(1.015); }
+}
+@keyframes vc-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 #f45caa00; }
+  50% { box-shadow: 0 0 24px 1px #f45caa35; }
+}
+@keyframes vc-shine {
+  0% { transform: translateX(-150%) skewX(-18deg); }
+  100% { transform: translateX(250%) skewX(-18deg); }
+}
+.hero-image { animation: vc-soft-zoom 1.6s cubic-bezier(.2,.7,.2,1) both; }
+.hero-content > * { animation: vc-fade-up .8s cubic-bezier(.2,.7,.2,1) both; }
+.hero-content > *:nth-child(1) { animation-delay: .12s; }
+.hero-content > *:nth-child(2) { animation-delay: .2s; }
+.hero-content > *:nth-child(3) { animation-delay: .28s; }
+.hero-content > *:nth-child(4) { animation-delay: .36s; }
+.hero-content > *:nth-child(5) { animation-delay: .46s; }
+.hero-content > *:nth-child(6) { animation-delay: .56s; }
+.section-label, .intro-grid, .gallery-heading, .gallery-grid, .edition-card, .trust-row, .email-preview-heading, .email-mockup, .faq h2, .faq details {
+  animation: vc-fade-up .75s cubic-bezier(.2,.7,.2,1) both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 28%;
+}
+.gallery-card { border-radius: 3px; }
+.gallery-card img, .edition-art img { transition: transform .85s cubic-bezier(.2,.7,.2,1), filter .5s ease; }
+.gallery-card:hover img { transform: scale(1.065); filter: saturate(1.12) contrast(1.04); }
+.edition-card { transition: border-color .35s ease, box-shadow .4s ease, transform .4s ease; }
+.edition-card:hover { border-color: #76506d; box-shadow: 0 22px 65px #0005, 0 0 28px #f45caa12; transform: translateY(-3px); }
+.edition-card:hover .edition-art img { transform: scale(1.035); }
+.button { position: relative; isolation: isolate; overflow: hidden; transition: transform .25s ease, background .25s ease, box-shadow .3s ease; }
+.button::after { content: ""; position: absolute; z-index: -1; top: -40%; left: 0; width: 34%; height: 180%; background: linear-gradient(90deg, transparent, #ffffff55, transparent); transform: translateX(-150%) skewX(-18deg); }
+.button:hover::after { animation: vc-shine .75s ease; }
+.button-primary:hover, .button-buy:hover { box-shadow: 0 8px 28px #f45caa42; }
+.header-cta, .scroll-cue, .faq summary { transition: color .25s ease, border-color .25s ease, gap .25s ease; }
+.header-cta:hover { border-color: #f45caa; }
+.scroll-cue:hover { color: #ff8bc5; gap: 17px; }
+.faq details { transition: border-color .25s ease; }
+.faq details[open] { border-color: #76506d; }
+.email-mockup { transition: transform .4s ease, box-shadow .4s ease; }
+.email-mockup:hover { transform: translateY(-4px); box-shadow: 0 30px 85px #0008, 0 0 26px #f45caa12; }
+.email-avatar { animation: vc-glow-pulse 3.5s ease-in-out infinite; }
+.pulse-dot { animation: vc-glow-pulse 2.2s ease-in-out infinite; }
+.trust-row div { transition: background .25s ease, color .25s ease; }
+.trust-row div:hover { background: #f45caa0b; color: #fff; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
+
+
+/* Imagem GTA VI discreta em todo o fundo do site */
+body {
+  background-color: #0b0b10;
+  background-image:
+    linear-gradient(rgba(11, 11, 16, .88), rgba(11, 11, 16, .88)),
+    url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_5fb9e793-f0ba-44c6-98a9-02be26b80b0a-pFHjXNfXl8NDg6NI7ziSS71hB7fGmy.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+.gallery-section,
+.email-preview-section {
+  background-color: rgba(18, 17, 23, .82);
+  background-image: none;
+}
+.edition-card {
+  background: rgba(21, 19, 27, .88);
+  backdrop-filter: blur(3px);
+}
+.faq details,
+.site-footer {
+  background: transparent;
+}
+@media (max-width: 700px) {
+  body { background-attachment: scroll; }
+}
+
+
+/* Fundo GTA VI contínuo em todas as áreas do site */
+html {
+  min-height: 100%;
+  background: #0b0b10;
+}
+body {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  background: transparent !important;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(11, 11, 16, .76), rgba(11, 11, 16, .76)),
+    url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_5fb9e793-f0ba-44c6-98a9-02be26b80b0a-pFHjXNfXl8NDg6NI7ziSS71hB7fGmy.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.intro,
+.edition,
+.faq,
+.site-footer {
+  background-color: rgba(11, 11, 16, .38);
+}
+.gallery-section,
+.email-preview-section {
+  background-color: rgba(18, 17, 23, .58);
+  background-image: none;
+}
+.edition-card {
+  background: rgba(21, 19, 27, .78);
+}
+
+
+/* Preço promocional com valor anterior riscado */
+.price { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+.price .old-price {
+  color: #aaa4ae;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-decoration: line-through;
+  text-decoration-color: #f45caa;
+  text-decoration-thickness: 2px;
+}
+.price .current-price {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -.05em;
+}
+
+
+/* Notificação flutuante de estoque */
+.stock-alert {
+  position: fixed;
+  z-index: 18;
+  right: 22px;
+  bottom: 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  width: min(430px, calc(100vw - 28px));
+  padding: 17px 18px;
+  border: 1px solid #ff7777;
+  border-left: 5px solid #ff2929;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #a90914 0%, #650711 100%);
+  color: #fff;
+  box-shadow: 0 12px 38px #000b, 0 0 24px #ff171744;
+  animation: stock-alert-in .65s cubic-bezier(.2,.8,.2,1) both, stock-alert-pulse 2.8s ease-in-out 1s infinite;
+}
+.stock-alert-icon {
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #ffffff20;
+  color: #fff;
+}
+.stock-alert-copy { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.stock-alert-copy strong {
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 900;
+  letter-spacing: .025em;
+}
+.stock-alert-copy span { color: #ffe7e7; font-size: 11px; line-height: 1.45; }
+.stock-alert-copy a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin-top: 6px;
+  padding: 8px 11px;
+  border-radius: 4px;
+  background: #fff;
+  color: #9b0711;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  transition: transform .2s ease, background .2s ease;
+}
+.stock-alert-copy a:hover { transform: translateY(-2px); background: #ffe5e5; }
+@keyframes stock-alert-in {
+  from { opacity: 0; transform: translate3d(0, 22px, 0) scale(.97); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes stock-alert-pulse {
+  0%, 100% { box-shadow: 0 12px 38px #000b, 0 0 16px #ff171722; }
+  50% { box-shadow: 0 12px 38px #000b, 0 0 28px #ff171766; }
+}
+@media (max-width: 600px) {
+  .stock-alert {
+    right: 12px;
+    bottom: 12px;
+    width: calc(100vw - 24px);
+    padding: 14px;
+    gap: 10px;
+  }
+  .stock-alert-icon { flex-basis: 34px; width: 34px; height: 34px; }
+  .stock-alert-copy strong { font-size: 12px; }
+  .stock-alert-copy span { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stock-alert { animation: none; }
+}
+
+
+/* Posiciona o botão de compra na parte inferior da tela, como na referência */
+#botao-compra { scroll-margin-top: 72vh; }
+@media (max-width: 700px) {
+  #botao-compra { scroll-margin-top: 86svh; }
+}
